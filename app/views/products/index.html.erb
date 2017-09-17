@@ -1,21 +1,23 @@
 <p>Total number of products:</p>
 <p><%= @products.count %></p>
-<%= link_to "New product", new_product_path %>
+<%= link_to 'New product', new_product_path %>
 <br /><br />
-<table style="width:20%;text-align:left">
+<table style='width:20%;text-align:left'>
   <tr>
     <th>Id</th>
     <th>Name</th>
     <th>Price</th>
+    <th>Image</th>
   </tr>
   <% @products.each do |product| %>
     <tr>
       <td><%= product.id %></td>
       <td><%= product.name %></td>
       <td><%= product.price %></td>
-      <td><%= link_to "Show", product_path(product) %></td>
-      <td><%= link_to "Edit", edit_product_path(product) %></td>
-      <td><%= link_to "Delete", product_path(product), method: :delete %></td>
+      <td><%= product.image_url? ? 'Yes' : 'No' %></td>
+      <td><%= link_to 'Show', product_path(product) %></td>
+      <td><%= link_to 'Edit', edit_product_path(product) %></td>
+      <td><%= link_to 'Delete', product_path(product), method: :delete %></td>
     </tr>
   <% end %>
 </table>
