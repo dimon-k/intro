@@ -15,9 +15,18 @@
       <td><%= product.name %></td>
       <td><%= product.price %></td>
       <td><%= product.image_url? ? 'Yes' : 'No' %></td>
+      <!-- <td>
+        <%= hidden_field_tag 'rfid_tag', @passed_rfid_tag %>
+        <%= link_to 'Add to Cart', carts_path, method: :post %>
+      </td> -->
+      <td><%= link_to 'Add to Cart', carts_path(product: product), method: :post %></td>
       <td><%= link_to 'Show', product_path(product) %></td>
       <td><%= link_to 'Edit', edit_product_path(product) %></td>
       <td><%= link_to 'Delete', product_path(product), method: :delete %></td>
     </tr>
   <% end %>
 </table>
+<br />
+<p><b>Item in Cart (id):</b></p>
+<p><%= @cart ? @cart.product.name : "Cart is empty!" %></p>
+<%= (link_to 'Complete order', cart_path(@cart), method: :put) if @cart %>

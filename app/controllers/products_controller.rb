@@ -4,6 +4,10 @@ class ProductsController < ApplicationController
 
   def index
     @products = Product.all
+    cart = Cart.where(user_id: current_user.id).last
+    if cart
+      @cart = cart if cart.state == 'created'
+    end
   end
 
   def new
@@ -35,6 +39,7 @@ class ProductsController < ApplicationController
   def find_product
     @product = Product.find(params[:id])
   end
+
   def product_params
     params.require(:product).permit(:name, :price, :image_url)
   end
