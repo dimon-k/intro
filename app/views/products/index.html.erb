@@ -14,7 +14,7 @@
       <td><%= product.id %></td>
       <td><%= product.name %></td>
       <td><%= product.price %></td>
-      <td><%= product.image_url? ? 'Yes' : 'No' %></td>
+      <td><%= image_tag product.image.url(:thumb) %></td>
       <!-- <td>
         <%= hidden_field_tag 'rfid_tag', @passed_rfid_tag %>
         <%= link_to 'Add to Cart', carts_path, method: :post %>
@@ -28,5 +28,10 @@
 </table>
 <br />
 <p><b>Item in Cart (id):</b></p>
-<p><%= @cart ? @cart.product.name : "Cart is empty!" %></p>
+<% if @cart %>
+  <p><%= @cart.product.name %></p>
+  <%= image_tag @cart.product.image.url(:thumb) if @cart.product.image.present? %></p>
+<% else %>
+  <p><%= "Cart is empty!" %></p>
+<% end %>
 <%= (link_to 'Complete order', cart_path(@cart), method: :put) if @cart %>
