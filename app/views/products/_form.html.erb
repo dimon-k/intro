@@ -3,8 +3,7 @@
 	<%= p.text_field :name %><br />
   <%= p.label :price %><br />
 	<%= p.text_field :price %><br />
-  <%= p.label :image_url %><br />
-	<%= p.text_field :image_url %><br /><br />
+  <%= p.label :image %><br />
   <%= p.file_field :image %>
 	<%= p.submit (product.new_record? ? 'Create product' : 'Update product') %>
 <% end %>

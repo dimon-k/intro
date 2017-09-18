@@ -15,10 +15,6 @@
       <td><%= product.name %></td>
       <td><%= product.price %></td>
       <td><%= image_tag product.image.url(:thumb) %></td>
-      <!-- <td>
-        <%= hidden_field_tag 'rfid_tag', @passed_rfid_tag %>
-        <%= link_to 'Add to Cart', carts_path, method: :post %>
-      </td> -->
       <td><%= link_to 'Add to Cart', carts_path(product: product), method: :post %></td>
       <td><%= link_to 'Show', product_path(product) %></td>
       <td><%= link_to 'Edit', edit_product_path(product) %></td>
