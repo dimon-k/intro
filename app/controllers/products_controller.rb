@@ -4,10 +4,7 @@ class ProductsController < ApplicationController
 
   def index
     @products = Product.all
-    cart = Cart.where(user_id: current_user.id).last
-    if cart
-      @cart = cart if cart.state == 'created'
-    end
+    @cart = current_user.carts.where(state: 'created').last
   end
 
   def new
@@ -26,7 +23,11 @@ class ProductsController < ApplicationController
   end
 
   def update
-    @product.update(product_params) ? (redirect_to products_path) : (render 'edit')
+    if @product.update(product_params)
+      redirect_to products_path
+    else
+      render 'edit'
+    end
   end
 
   def destroy

@@ -28,6 +28,6 @@
   <p><%= @cart.product.name %></p>
   <%= image_tag @cart.product.image.url(:thumb) if @cart.product.image.present? %></p>
 <% else %>
-  <p><%= "Cart is empty!" %></p>
+  <p>Cart is empty!</p>
 <% end %>
 <%= (link_to 'Complete order', cart_path(@cart), method: :put) if @cart %>
