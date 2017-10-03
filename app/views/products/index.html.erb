@@ -25,9 +25,16 @@
 <br />
 <p><b>Item in Cart (id):</b></p>
 <% if @cart %>
-  <p><%= @cart.product.name %></p>
-  <%= image_tag @cart.product.image.url(:thumb) if @cart.product.image.present? %></p>
+<p><b><%= @cart.line_items.count %></b></p>
+  <% @cart.line_items.each do |line_item| %>
+    <p><%= line_item.product.name %></p>
+    <%= image_tag line_item.product.image.url(:thumb) if line_item.product.image.present? %></p>
+    <p><%= line_item.quantity %></p>
+    <p><%= link_to 'Remove item from cart', line_item_path(line_item), method: :delete %></p>
+  <% end %>
 <% else %>
   <p>Cart is empty!</p>
 <% end %>
-<%= (link_to 'Complete order', cart_path(@cart), method: :put) if @cart %>
+<br />
+<p><%= (link_to 'Complete order', cart_path(@cart), method: :put) if @cart %></p>
+<br />
